@@ -1,0 +1,9 @@
+{
+	"name": "datafactory01atencio",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "506b586c-60df-4e66-960f-03da4d642c97",
+		"tenantId": "50a68648-8a2a-489c-b745-643d4d86d1e3"
+	}
+}

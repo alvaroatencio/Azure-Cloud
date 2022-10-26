@@ -1,0 +1,117 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "tablaCategorias",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaFactMine",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaProducto",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaSubcategoria",
+						"type": "DatasetReference"
+					},
+					"name": "source4"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaVentasInternet",
+						"type": "DatasetReference"
+					},
+					"name": "source5"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Cod_Categoria as string,",
+				"          Categoria as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          TruckID as integer,",
+				"          ProjectID as integer,",
+				"          OperatorID as integer,",
+				"          TotalOreMined as decimal(19,4),",
+				"          TotalWasted as decimal(19,4),",
+				"          Date as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source(output(",
+				"          Cod_Producto as string,",
+				"          Producto as string,",
+				"          Cod_SubCategoria as string,",
+				"          Color as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source3",
+				"source(output(",
+				"          Cod_SubCategoria as string,",
+				"          SubCategoria as string,",
+				"          Cod_Categoria as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source4",
+				"source(output(",
+				"          Cod_Producto as string,",
+				"          Cod_Cliente as string,",
+				"          Cod_Territorio as string,",
+				"          NumeroOrden as string,",
+				"          Cantidad as string,",
+				"          PrecioUnitario as string,",
+				"          CostoUnitario as string,",
+				"          Impuesto as string,",
+				"          Flete as string,",
+				"          FechaOrden as string,",
+				"          FechaEnvio as string,",
+				"          FechaVencimiento as string,",
+				"          Cod_Promocion as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source5",
+				"source1 select(mapColumn(",
+				"          Cod_Categoria,",
+				"          Nombre_Categoria = Categoria",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
+			]
+		}
+	}
+}

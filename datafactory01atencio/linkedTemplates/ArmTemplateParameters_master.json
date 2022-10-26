@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "datafactory01atencio"
+		},
+		"azuresql_datafactory_connectionString": {
+			"value": ""
+		},
+		"dataBricks_dataFactory_accessToken": {
+			"value": ""
+		},
+		"dataLake_dataFactory_accountKey": {
+			"value": ""
+		},
+		"tablaCategoria_connectionString": {
+			"value": ""
+		},
+		"dataLake_dataFactory_properties_typeProperties_url": {
+			"value": "https://datalake01atencio.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

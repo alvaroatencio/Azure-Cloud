@@ -44,6 +44,9 @@
 			"transformations": [
 				{
 					"name": "select1"
+				},
+				{
+					"name": "select2"
 				}
 			],
 			"scriptLines": [
@@ -110,7 +113,12 @@
 				"          Nombre_Categoria = Categoria",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source2 select(mapColumn(",
+				"          TotalOreMined",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2"
 			]
 		}
 	}

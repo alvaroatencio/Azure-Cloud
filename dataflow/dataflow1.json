@@ -81,13 +81,6 @@
 						"referenceName": "output",
 						"type": "DatasetReference"
 					},
-					"name": "sink2"
-				},
-				{
-					"dataset": {
-						"referenceName": "output",
-						"type": "DatasetReference"
-					},
 					"name": "sink3"
 				},
 				{
@@ -303,7 +296,7 @@
 				"     skipDuplicateMapOutputs: true) ~> TotalOre",
 				"select1 sort(asc(Country, true)) ~> sort2",
 				"source7 filter(Cod_Categoria == \"3\") ~> filter1",
-				"source8 derive(IngresosNetos = (toInteger(Cantidad) * toInteger(PrecioUnitario)) - toInteger(CostoUnitario)) ~> derivedColumn1",
+				"source8 derive(IngresosNetos = (toFloat(Cantidad) * toFloat(PrecioUnitario)) - toFloat(CostoUnitario)) ~> derivedColumn1",
 				"Renombrar sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
@@ -311,13 +304,6 @@
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1",
-				"TotalOre sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2",
 				"SeleccionMine sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",

@@ -20,33 +20,132 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "tablaProducto",
+						"referenceName": "tablaMine",
 						"type": "DatasetReference"
 					},
 					"name": "source3"
 				},
 				{
 					"dataset": {
-						"referenceName": "tablaSubcategoria",
+						"referenceName": "tablaMine",
 						"type": "DatasetReference"
 					},
 					"name": "source4"
 				},
 				{
 					"dataset": {
-						"referenceName": "tablaVentasInternet",
+						"referenceName": "tablaProducto",
 						"type": "DatasetReference"
 					},
 					"name": "source5"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaProducto",
+						"type": "DatasetReference"
+					},
+					"name": "source6"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaSubcategoria",
+						"type": "DatasetReference"
+					},
+					"name": "source7"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaVentasInternet",
+						"type": "DatasetReference"
+					},
+					"name": "source8"
+				},
+				{
+					"dataset": {
+						"referenceName": "tablaVentasInternet",
+						"type": "DatasetReference"
+					},
+					"name": "source9"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink4"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink6"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink7"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink8"
+				}
+			],
 			"transformations": [
 				{
 					"name": "select1"
 				},
 				{
+					"name": "SeleccionMine"
+				},
+				{
 					"name": "select2"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "Renombrar"
+				},
+				{
+					"name": "TotalOre"
+				},
+				{
+					"name": "sort2"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -71,6 +170,40 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
 				"source(output(",
+				"          TruckID as integer,",
+				"          Truck as string,",
+				"          ProjectID as integer,",
+				"          Country as string,",
+				"          OperatorID as integer,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          Age as integer,",
+				"          TotalOreMined as decimal(19,4),",
+				"          TotalWasted as decimal(19,4),",
+				"          Date as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source3",
+				"source(output(",
+				"          TruckID as integer,",
+				"          Truck as string,",
+				"          ProjectID as integer,",
+				"          Country as string,",
+				"          OperatorID as integer,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          Age as integer,",
+				"          TotalOreMined as decimal(19,4),",
+				"          TotalWasted as decimal(19,4),",
+				"          Date as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source4",
+				"source(output(",
 				"          Cod_Producto as string,",
 				"          Producto as string,",
 				"          Cod_SubCategoria as string,",
@@ -79,7 +212,17 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source3",
+				"     format: 'table') ~> source5",
+				"source(output(",
+				"          Cod_Producto as string,",
+				"          Producto as string,",
+				"          Cod_SubCategoria as string,",
+				"          Color as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source6",
 				"source(output(",
 				"          Cod_SubCategoria as string,",
 				"          SubCategoria as string,",
@@ -88,7 +231,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source4",
+				"     format: 'table') ~> source7",
 				"source(output(",
 				"          Cod_Producto as string,",
 				"          Cod_Cliente as string,",
@@ -107,18 +250,111 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source5",
+				"     format: 'table') ~> source8",
+				"source(output(",
+				"          Cod_Producto as string,",
+				"          Cod_Cliente as string,",
+				"          Cod_Territorio as string,",
+				"          NumeroOrden as string,",
+				"          Cantidad as string,",
+				"          PrecioUnitario as string,",
+				"          CostoUnitario as string,",
+				"          Impuesto as string,",
+				"          Flete as string,",
+				"          FechaOrden as string,",
+				"          FechaEnvio as string,",
+				"          FechaVencimiento as string,",
+				"          Cod_Promocion as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source9",
+				"source4 select(mapColumn(",
+				"          Country,",
+				"          TotalWasted",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"source3 select(mapColumn(",
+				"          Country,",
+				"          FirstName,",
+				"          LastName,",
+				"          Age",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SeleccionMine",
+				"source5 select(mapColumn(",
+				"          Cod_Producto",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"source6 sort(desc(Cod_Producto, true)) ~> sort1",
 				"source1 select(mapColumn(",
 				"          Cod_Categoria,",
 				"          Nombre_Categoria = Categoria",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"     skipDuplicateMapOutputs: true) ~> Renombrar",
 				"source2 select(mapColumn(",
 				"          TotalOreMined",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select2"
+				"     skipDuplicateMapOutputs: true) ~> TotalOre",
+				"select1 sort(asc(Country, true)) ~> sort2",
+				"source7 filter(Cod_Categoria == \"3\") ~> filter1",
+				"source8 derive(IngresosNetos = (toInteger(Cantidad) * toInteger(PrecioUnitario)) - toInteger(CostoUnitario)) ~> derivedColumn1",
+				"Renombrar sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"TotalOre sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"SeleccionMine sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3",
+				"sort2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink4",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink6",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink7",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink8"
 			]
 		}
 	}

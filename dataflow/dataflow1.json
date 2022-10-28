@@ -113,6 +113,13 @@
 				},
 				{
 					"name": "sink9"
+				},
+				{
+					"dataset": {
+						"referenceName": "output",
+						"type": "DatasetReference"
+					},
+					"name": "sink10"
 				}
 			],
 			"transformations": [
@@ -351,7 +358,14 @@
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink9"
+				"     skipDuplicateMapOutputs: true) ~> sink9",
+				"source9 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink10"
 			]
 		}
 	}

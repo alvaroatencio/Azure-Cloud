@@ -70,8 +70,11 @@
 									"sink4": {},
 									"sink6": {},
 									"sink7": {},
-									"sink8": {}
-								}
+									"sink8": {},
+									"sink9": {},
+									"sink10": {}
+								},
+								"linkedServiceParameters": {}
 							},
 							"staging": {},
 							"compute": {
@@ -605,6 +608,20 @@
 								"type": "DatasetReference"
 							},
 							"name": "sink8"
+						},
+						{
+							"dataset": {
+								"referenceName": "output",
+								"type": "DatasetReference"
+							},
+							"name": "sink9"
+						},
+						{
+							"dataset": {
+								"referenceName": "output",
+								"type": "DatasetReference"
+							},
+							"name": "sink10"
 						}
 					],
 					"transformations": [
@@ -634,6 +651,9 @@
 						},
 						{
 							"name": "derivedColumn1"
+						},
+						{
+							"name": "aggregate1"
 						}
 					],
 					"scriptLines": [
@@ -792,6 +812,7 @@
 						"select1 sort(asc(Country, true)) ~> sort2",
 						"source7 filter(Cod_Categoria == \"3\") ~> filter1",
 						"source8 derive(IngresosNetos = (toFloat(Cantidad) * toFloat(PrecioUnitario)) - toFloat(CostoUnitario)) ~> derivedColumn1",
+						"TotalOre aggregate(TotalOreMined = sum(TotalOreMined)) ~> aggregate1",
 						"Renombrar sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     umask: 0022,",
@@ -835,7 +856,21 @@
 						"     preCommands: [],",
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> sink8"
+						"     skipDuplicateMapOutputs: true) ~> sink8",
+						"aggregate1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink9",
+						"source9 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink10"
 					]
 				}
 			},
